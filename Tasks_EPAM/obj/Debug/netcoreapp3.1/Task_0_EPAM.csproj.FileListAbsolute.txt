@@ -1,0 +1,13 @@
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\bin\Debug\netcoreapp3.1\Task_0_EPAM.exe
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\bin\Debug\netcoreapp3.1\Task_0_EPAM.deps.json
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\bin\Debug\netcoreapp3.1\Task_0_EPAM.runtimeconfig.json
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\bin\Debug\netcoreapp3.1\Task_0_EPAM.runtimeconfig.dev.json
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\bin\Debug\netcoreapp3.1\Task_0_EPAM.dll
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\bin\Debug\netcoreapp3.1\Task_0_EPAM.pdb
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\obj\Debug\netcoreapp3.1\Task_0_EPAM.csprojAssemblyReference.cache
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\obj\Debug\netcoreapp3.1\Task_0_EPAM.AssemblyInfoInputs.cache
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\obj\Debug\netcoreapp3.1\Task_0_EPAM.AssemblyInfo.cs
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\obj\Debug\netcoreapp3.1\Task_0_EPAM.csproj.CoreCompileInputs.cache
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\obj\Debug\netcoreapp3.1\Task_0_EPAM.dll
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\obj\Debug\netcoreapp3.1\Task_0_EPAM.pdb
+C:\Users\Vadim\Desktop\GitHub\Tasks_EPAM\Tasks_EPAM\obj\Debug\netcoreapp3.1\Task_0_EPAM.genruntimeconfig.cache
