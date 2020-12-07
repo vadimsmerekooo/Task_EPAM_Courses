@@ -16,7 +16,6 @@ namespace Task_0_EPAM.Classes
 
         public void AddMediaFile(MediaBase mediaBase)
         {
-            mediaBaseCollection.Add(mediaFile);
         }
         public void DeleteMediaFile(MediaBase mediabase)
         {
