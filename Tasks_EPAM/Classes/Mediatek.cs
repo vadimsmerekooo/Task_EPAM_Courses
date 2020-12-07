@@ -3,50 +3,37 @@ using System.Collections.Generic;
 
 namespace Task_0_EPAM.Classes
 {
-    class Mediatek
+    class MediaBase 
     {
-        public List<PlayList> _playList = new List<PlayList>();
-        public MediaPlayer _mediaPlayer;
+        public string Name { get; set; }
+    }
 
-        public Mediatek(PlayList playLists, MediaPlayer mediaPlayer)
-        {
-            _playList.Add(playLists);
-            _mediaPlayer = mediaPlayer;
-        }
-                
-        public void CreatePlayList(PlayList playList)
-        {
-            if (playList != null)
-                _playList.Add(playList);
-        }
+    abstract class Mediatek
+    {
+        List<MediaBase> mediaBaseCollection;
+        //List<MediaFile> _mediaFile;
+        //List<PlayList> _playList;
 
-        public void DeletePlayList(PlayList playList)
+        public void AddMediaFile(MediaBase mediaBase)
         {
-            if (_playList.Contains(playList))
-                _playList.Remove(playList);
+            mediaBaseCollection.Add(mediaFile);
         }
-        public MediaFile SearchMediaFile(string searchString)
+        public void DeleteMediaFile(MediaBase mediabase)
         {
-            if (String.IsNullOrWhiteSpace(searchString))
-                return null;
-            foreach (PlayList playList in _playList)
+
+        }
+        public bool FindByName(string searchString)
+        {
+            foreach (MediaBase itemMediaBase in mediaBaseCollection)
             {
-                foreach (MediaFile mediaFile in playList.MediaFileList)
+                if(itemMediaBase is IFind)
                 {
-                    if (mediaFile.Name.Contains(searchString)
-                        || mediaFile.Author.Contains(searchString))
-                        return mediaFile;
+                    return ((IFind)itemMediaBase).FindByName(searchString);
                 }
+                if (itemMediaBase.Name.Contains(searchString, StringComparison.CurrentCultureIgnoreCase))
+                    return true;
             }
-            return null;
-        }
-        public void PlayNewPlayList(PlayList playList)
-        {
-            if (playList == null)
-                return;
-
-            _mediaPlayer.PlayList = playList;
-            _mediaPlayer.Play(_mediaPlayer.PlayList.MediaFileList[new Random().Next(_mediaPlayer.PlayList.MediaFileList.Count - 1)]);
+            return false;
         }
     }
 }

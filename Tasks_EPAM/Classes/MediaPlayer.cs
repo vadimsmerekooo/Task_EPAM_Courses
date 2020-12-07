@@ -3,27 +3,20 @@ using System.Collections.Generic;
 
 namespace Task_0_EPAM.Classes
 {
-    class MediaPlayer
+    interface IPlay<T> where T : MediaFile
     {
-        public PlayList PlayList { get; set; }
-        public MediaFile playMedialFile;
-        bool play;
+        public void Play(T file);
+        public void Pause();
+    }
+    class MusicPlayer : IPlay<AudioFile>
+    {
+        public void Play(AudioFile play)
+        {
 
-        public MediaPlayer(PlayList playList)
-        {
-            PlayList = playList;
-        }
-        public void Play(MediaFile mediaFile)
-        {
-            playMedialFile = mediaFile;
-            play = true;
-            Console.WriteLine("Play " + mediaFile.Name);
         }
         public void Pause()
         {
-            play = false;
-            Console.WriteLine("Stop " + playMedialFile.Name);
-        }
 
+        }
     }
 }

@@ -4,7 +4,8 @@
     {
         audio,
         video,
-        photo
+        photo,
+        document
     }
 
 }

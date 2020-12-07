@@ -6,5 +6,6 @@
         public int Heigh { get; set; }
         public int Width { get; set; }
         public int Resolution { get; set; }
+
     }
 }
