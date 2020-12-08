@@ -11,9 +11,7 @@ namespace Task_1_EPAM.Model.Interfaces
         double FuelConsumption { get; set; }
         double MaxSpeed { get; set; }
         double Price { get; set; }
-
-        bool FindByMaxSpeed(double a, double b) => MaxSpeed >= a && MaxSpeed <= b;
-
-        TypeCar TypeCar { get; }
+        bool CarMaxSpeed(double a, double b) => MaxSpeed >= a && MaxSpeed <= b;
+        void WriteCar();
     }
 }

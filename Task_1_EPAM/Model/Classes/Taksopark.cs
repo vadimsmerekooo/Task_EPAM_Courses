@@ -23,7 +23,7 @@ namespace Task_1_EPAM.Model.Classes
             ICollection<ICar> foundCars = new List<ICar>();
             foreach (ICar carItem in cars)
             {
-                if (carItem.FindByMaxSpeed(a, b))
+                if (carItem.CarMaxSpeed(a, b))
                     foundCars.Add(carItem);
             }
             return foundCars;

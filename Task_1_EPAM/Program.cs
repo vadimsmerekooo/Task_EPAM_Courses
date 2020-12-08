@@ -9,11 +9,13 @@ namespace Task_1_EPAM
         static void Main(string[] args)
         {
             Taksopark taksopark = new Taksopark();
-            taksopark.AddCar(new Coupe() { 
-            Brand = "BMW",
-            FuelConsumption = 7.3,
-            MaxSpeed = 240,
-            Price = 2500});
+            taksopark.AddCar(new Coupe()
+            {
+                Brand = "BMW",
+                FuelConsumption = 7.3,
+                MaxSpeed = 240,
+                Price = 2500
+            });
             taksopark.AddCar(new Hatchback()
             {
                 Brand = "Geely",
@@ -39,28 +41,24 @@ namespace Task_1_EPAM
             Console.WriteLine("List cars: \n");
             foreach (ICar carItem in taksopark.GetCars())
             {
-                WriteCar(carItem);
+                carItem.WriteCar();
             }
 
             Console.WriteLine($"Sum cars taksopark: {taksopark.GetSumCars()}$\n");
             Console.WriteLine("Sorted list cars by fuel: \n");
             foreach (ICar carItem in taksopark.SortedByFuel())
             {
-                WriteCar(carItem);
+                carItem.WriteCar();
             }
 
             Console.WriteLine("Enter a and b, for find car by speed:\n");
 
             foreach (ICar carItem in taksopark.FindByMaxSpeed(double.Parse(Console.ReadLine()), double.Parse(Console.ReadLine())))
             {
-                WriteCar(carItem);
+                carItem.WriteCar();
             }
 
             Console.ReadKey();
-        }
-        public static void WriteCar(ICar car)
-        {
-            Console.WriteLine($"Brand {car.Brand}, Fuel Consumption {car.FuelConsumption}, Max speed {car.MaxSpeed}, Price {car.Price}, Type car {car.TypeCar}");
         }
     }
 }

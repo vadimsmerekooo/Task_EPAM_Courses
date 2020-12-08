@@ -5,12 +5,12 @@ using Task_1_EPAM.Model.Interfaces;
 
 namespace Task_1_EPAM.Model.Classes
 {
-    class Hatchback:ICar
+    class Hatchback : Car, ICar
     {
-        public string Brand { get; set; }
-        public double FuelConsumption { get; set; }
-        public double MaxSpeed { get; set; }
-        public double Price { get; set; }
-        public TypeCar TypeCar { get; } = TypeCar.Hatchback;
+        TypeCar TypeCar { get; } = TypeCar.Hatchback;
+        public void WriteCar()
+        {
+            Console.WriteLine($"Brand {Brand}, Fuel Consumption {FuelConsumption}, Max speed {MaxSpeed}, Price {Price}, Type car {TypeCar}");
+        }
     }
 }
