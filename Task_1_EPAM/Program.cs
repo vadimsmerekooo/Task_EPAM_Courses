@@ -9,53 +9,30 @@ namespace Task_1_EPAM
         static void Main(string[] args)
         {
             Taksopark taksopark = new Taksopark();
-            taksopark.AddCar(new Coupe()
-            {
-                Brand = "BMW",
-                FuelConsumption = 7.3,
-                MaxSpeed = 240,
-                Price = 2500
-            });
-            taksopark.AddCar(new Hatchback()
-            {
-                Brand = "Geely",
-                FuelConsumption = 9,
-                MaxSpeed = 190,
-                Price = 5200
-            });
-            taksopark.AddCar(new Sedan()
-            {
-                Brand = "Opel",
-                FuelConsumption = 4.7,
-                MaxSpeed = 160,
-                Price = 2100
-            });
-            taksopark.AddCar(new Universal()
-            {
-                Brand = "MB",
-                FuelConsumption = 8.5,
-                MaxSpeed = 280,
-                Price = 4800
-            });
+            taksopark.AddCar(new Sedan("MB", 8.5, 280, 4800));
+            taksopark.AddCar(new Coupe("MB", 8.5, 280, 4800));
+            taksopark.AddCar(new Hatchback("MB", 8.5, 280, 4800));
+            taksopark.AddCar(new Universal("MB", 8.5, 280, 4800));
 
             Console.WriteLine("List cars: \n");
-            foreach (ICar carItem in taksopark.GetCars())
+            foreach (Car carItem in taksopark.GetCars())
             {
-                carItem.WriteCar();
+                carItem.ToString();
             }
 
             Console.WriteLine($"Sum cars taksopark: {taksopark.GetSumCars()}$\n");
             Console.WriteLine("Sorted list cars by fuel: \n");
-            foreach (ICar carItem in taksopark.SortedByFuel())
+            foreach (Car carItem in taksopark.SortedByFuel())
             {
-                carItem.WriteCar();
+                carItem.ToString();
             }
 
-            Console.WriteLine("Enter a and b, for find car by speed:\n");
+            Console.WriteLine("Enter minRangeValue and maxRangeValue, for find car by max-speed:\n");
+            double a = double.Parse(Console.ReadLine());
 
-            foreach (ICar carItem in taksopark.FindByMaxSpeed(double.Parse(Console.ReadLine()), double.Parse(Console.ReadLine())))
+            foreach (Car carItem in taksopark.FindByMaxSpeedInRange(a, double.Parse(Console.ReadLine())))
             {
-                carItem.WriteCar();
+                carItem.ToString();
             }
 
             Console.ReadKey();

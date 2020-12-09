@@ -8,36 +8,39 @@ namespace Task_1_EPAM.Model.Classes
 {
     class Taksopark
     {
-        ICollection<ICar> cars = new List<ICar>();
+        ICollection<Car> cars = new List<Car>();
 
-        public void AddCar(ICar car) => cars.Add(car);
+        public void AddCar(Car car) => cars.Add(car);
 
-        public void DeleteCar(ICar car) => cars.Remove(car);
+        public void DeleteCar(Car car) => cars.Remove(car);
 
-        public ICollection<ICar> GetCars() => cars;
+        public ICollection<Car> GetCars() => cars;
 
-        public ICar GetCar(ICar typeCar) => cars.FirstOrDefault(car => car is ICar);
+        public Car GetCar(Car typeCar) => cars.FirstOrDefault(car => car == typeCar);
 
-        public ICollection<ICar> FindByMaxSpeed(double a, double b)
+        public ICollection<Car> FindByMaxSpeedInRange(double a, double b)
         {
-            ICollection<ICar> foundCars = new List<ICar>();
-            foreach (ICar carItem in cars)
-            {
-                if (carItem.CarMaxSpeed(a, b))
-                    foundCars.Add(carItem);
-            }
-            return foundCars;
+            return cars.Where(car => car.IsMaxSpeedInRange(a, b)).ToList();
         }
-        public ICollection<ICar> SortedByFuel() => cars.OrderBy(car => car.FuelConsumption).ToList();
+
+
+
+
+        public ICollection<Car> SortedByFuel() => cars.OrderBy(car => car.FuelConsumption).ToList();
 
         public double GetSumCars()
         {
             double sum = 0;
-            foreach (ICar carItem in cars)
+            foreach (Car carItem in cars)
             {
                 sum += carItem.Price;
             }
             return sum;
+        }
+
+        public double GetTotalSumCars()
+        {
+            return cars.Sum(car => car.Price);
         }
     }
 }

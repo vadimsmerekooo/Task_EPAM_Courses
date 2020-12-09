@@ -5,12 +5,15 @@ using Task_1_EPAM.Model.Interfaces;
 
 namespace Task_1_EPAM.Model.Classes
 {
-    class Coupe : Car, ICar
+    class Coupe : Car
     {
-        TypeCar TypeCar { get; } = TypeCar.Coupe;
-        public void WriteCar()
+        public Coupe(string brand, double fuel, double maxSpeed, double price) : base(brand, fuel, maxSpeed, price)
         {
-            Console.WriteLine($"Brand {Brand}, Fuel Consumption {FuelConsumption}, Max speed {MaxSpeed}, Price {Price}, Type car {TypeCar}");
+
+        }
+        public override string ToString()
+        {
+            return "Type car Universal";
         }
     }
 }
