@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Task_1_EPAM.Model.Interfaces;
+using Task_1_EPAM.Model.Intrefaces;
 
 namespace Task_1_EPAM.Model.Classes
 {
-    class Taksopark
+    class Taksopark : IPark
     {
         ICollection<Car> cars = new List<Car>();
 
@@ -14,33 +15,14 @@ namespace Task_1_EPAM.Model.Classes
 
         public void DeleteCar(Car car) => cars.Remove(car);
 
-        public ICollection<Car> GetCars() => cars;
+        public ICollection<Car> GetCars() => cars.ToList();
 
-        public Car GetCar(Car typeCar) => cars.FirstOrDefault(car => car == typeCar);
+        public Car GetCarByBrand(string carBrand) => cars.FirstOrDefault(car => car.Brand.Contains(carBrand, StringComparison.OrdinalIgnoreCase));
 
-        public ICollection<Car> FindByMaxSpeedInRange(double a, double b)
-        {
-            return cars.Where(car => car.IsMaxSpeedInRange(a, b)).ToList();
-        }
+        public ICollection<Car> FindByMaxSpeedInRange(double a, double b) => cars.Where(car => car.IsMaxSpeedInRange(a, b)).ToList();
 
+        public ICollection<Car> SortedCarByFuel() => cars.OrderBy(car => car.FuelConsumption).ToList();
 
-
-
-        public ICollection<Car> SortedByFuel() => cars.OrderBy(car => car.FuelConsumption).ToList();
-
-        public double GetSumCars()
-        {
-            double sum = 0;
-            foreach (Car carItem in cars)
-            {
-                sum += carItem.Price;
-            }
-            return sum;
-        }
-
-        public double GetTotalSumCars()
-        {
-            return cars.Sum(car => car.Price);
-        }
+        public double GetTotalSumCars() => cars.Sum(car => car.Price);
     }
 }

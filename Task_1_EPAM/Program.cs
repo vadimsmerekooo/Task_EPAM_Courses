@@ -1,6 +1,7 @@
 ﻿using System;
 using Task_1_EPAM.Model.Classes;
 using Task_1_EPAM.Model.Interfaces;
+using Task_1_EPAM.Model.Intrefaces;
 
 namespace Task_1_EPAM
 {
@@ -17,14 +18,14 @@ namespace Task_1_EPAM
             Console.WriteLine("List cars: \n");
             foreach (Car carItem in taksopark.GetCars())
             {
-                carItem.ToString();
+                Console.WriteLine(carItem.ToString()); 
             }
 
-            Console.WriteLine($"Sum cars taksopark: {taksopark.GetSumCars()}$\n");
+            Console.WriteLine($"Sum cars taksopark: {taksopark.GetTotalSumCars()}$\n");
             Console.WriteLine("Sorted list cars by fuel: \n");
-            foreach (Car carItem in taksopark.SortedByFuel())
+            foreach (Car carItem in taksopark.SortedCarByFuel())
             {
-                carItem.ToString();
+                Console.WriteLine(carItem.ToString());
             }
 
             Console.WriteLine("Enter minRangeValue and maxRangeValue, for find car by max-speed:\n");
@@ -32,7 +33,7 @@ namespace Task_1_EPAM
 
             foreach (Car carItem in taksopark.FindByMaxSpeedInRange(a, double.Parse(Console.ReadLine())))
             {
-                carItem.ToString();
+                Console.WriteLine(carItem.ToString());
             }
 
             Console.ReadKey();

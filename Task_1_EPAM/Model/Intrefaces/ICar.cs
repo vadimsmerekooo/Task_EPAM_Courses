@@ -7,6 +7,6 @@ namespace Task_1_EPAM.Model.Interfaces
 {
     interface ICar
     {
-        bool IsMaxSpeedInRange(double a, double b);
+        bool IsMaxSpeedInRange(double minRangeValue, double maxRangeValue);
     }
 }
