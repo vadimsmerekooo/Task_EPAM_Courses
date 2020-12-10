@@ -10,10 +10,10 @@ namespace Task_1_EPAM
         static void Main(string[] args)
         {
             Taksopark taksopark = new Taksopark();
-            taksopark.AddCar(new Sedan("MB", 8.5, 280, 4800));
-            taksopark.AddCar(new Coupe("MB", 8.5, 280, 4800));
-            taksopark.AddCar(new Hatchback("MB", 8.5, 280, 4800));
-            taksopark.AddCar(new Universal("MB", 8.5, 280, 4800));
+            taksopark.AddCar(new Sedan("MB", 8.5, 350, 6400));
+            taksopark.AddCar(new Coupe("Opel", 8.3, 280, 4800));
+            taksopark.AddCar(new Hatchback("BMW", 9.7, 320, 2500));
+            taksopark.AddCar(new Universal("Audi", 5.9, 260, 3500));
 
             Console.WriteLine("List cars: \n");
             foreach (Car carItem in taksopark.GetCars())
@@ -29,9 +29,12 @@ namespace Task_1_EPAM
             }
 
             Console.WriteLine("Enter minRangeValue and maxRangeValue, for find car by max-speed:\n");
-            double a = double.Parse(Console.ReadLine());
+            Console.Write("minRangeValue: ");
+            double minRangeValue = double.Parse(Console.ReadLine());
+            Console.Write("maxRangeValue: ");
+            double maxRangeValue = double.Parse(Console.ReadLine());
 
-            foreach (Car carItem in taksopark.FindByMaxSpeedInRange(a, double.Parse(Console.ReadLine())))
+            foreach (Car carItem in taksopark.FindByMaxSpeedInRange(minRangeValue, maxRangeValue))
             {
                 Console.WriteLine(carItem.ToString());
             }

@@ -13,7 +13,7 @@ namespace Task_1_EPAM.Model.Classes
         }
         public override string ToString()
         {
-            return "Type car Universal";
+            return $"Brand {Brand}, Fuel Consumption {FuelConsumption}, Max speed {MaxSpeed}, Price {Price}, Type Universal";
         }
     }
 }
