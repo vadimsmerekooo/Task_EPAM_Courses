@@ -7,6 +7,7 @@ namespace Task_1_EPAM.Model.Classes
 {
     class Sedan : Car
     {
+        public int Doors { get; } = 5;
         public Sedan(string brand, double fuel, double maxSpeed, double price) : base(brand, fuel, maxSpeed, price)
         {
 

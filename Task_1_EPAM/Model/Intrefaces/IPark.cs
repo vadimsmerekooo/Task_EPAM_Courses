@@ -7,7 +7,8 @@ namespace Task_1_EPAM.Model.Intrefaces
 {
     interface IPark
     {
-        void AddCar(Car car);
+        double TotalPriceOfCars { get; }
+        void Add(Car car);
 
         void DeleteCar(Car car);
 
@@ -17,8 +18,6 @@ namespace Task_1_EPAM.Model.Intrefaces
 
         ICollection<Car> FindByMaxSpeedInRange(double minRangeValue, double maxRangeValue);
 
-        ICollection<Car> SortedCarByFuel();
-
-        double GetTotalSumCars();
+        ICollection<Car> SortCars(Func<Car, bool> func);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Task_1_EPAM.Model.Classes;
+using Task_1_EPAM.Model.Enum;
 using Task_1_EPAM.Model.Interfaces;
 using Task_1_EPAM.Model.Intrefaces;
 
@@ -10,20 +11,23 @@ namespace Task_1_EPAM
         static void Main(string[] args)
         {
             Taksopark taksopark = new Taksopark();
-            taksopark.AddCar(new Sedan("MB", 8.5, 350, 6400));
-            taksopark.AddCar(new Coupe("Opel", 8.3, 280, 4800));
-            taksopark.AddCar(new Hatchback("BMW", 9.7, 320, 2500));
-            taksopark.AddCar(new Universal("Audi", 5.9, 260, 3500));
+            taksopark.Add(new Sedan("MB", 8.5, 350, 6400));
+            taksopark.Add(new Coupe("Opel", 8.3, 280, 4800));
+            taksopark.Add(new Hatchback("BMW", 9.7, 320, 2500));
+            taksopark.Add(new Universal("Audi", 5.9, 260, 3500));
 
             Console.WriteLine("List cars: \n");
-            foreach (Car carItem in taksopark.GetCars())
+            
+            foreach (Car carItem in taksopark)
             {
                 Console.WriteLine(carItem.ToString()); 
             }
 
-            Console.WriteLine($"Sum cars taksopark: {taksopark.GetTotalSumCars()}$\n");
+            Console.WriteLine($"Sum cars taksopark: {taksopark.TotalPriceOfCars}$\n");
             Console.WriteLine("Sorted list cars by fuel: \n");
-            foreach (Car carItem in taksopark.SortedCarByFuel())
+            CarProperty carPropertyBrand = CarProperty.Brand;
+
+            foreach (Car carItem in taksopark.SortCars(item => item.Brand))
             {
                 Console.WriteLine(carItem.ToString());
             }
