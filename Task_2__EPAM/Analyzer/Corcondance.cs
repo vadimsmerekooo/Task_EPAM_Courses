@@ -8,38 +8,66 @@ using Task_2__EPAM.Analyzer.Interfaces;
 
 namespace Task_2__EPAM.Analyzer
 {
-    class Corcondance : ICorcondance, IEnumerable
+    class Corcondance : ICorcondance
     {
-        public char Name { get; private set; }
-        List<CorcondanceItem> corcondance = new List<CorcondanceItem>();
+        Dictionary<char, List<CorcondanceItem>> corcondance = new Dictionary<char, List<CorcondanceItem>>();
 
-        public Corcondance(char name, CorcondanceItem corcondanceItem)
+        public void Add(string word, int numberLine)
         {
-            Name = name;
-            Add(corcondanceItem);
+            if (String.IsNullOrEmpty(word))
+                throw new ArgumentNullException("Corcandance item is null");
+            try
+            {
+                if (!corcondance.Keys.Any(ch => ch == word.ToUpper().First()))
+                {
+                    corcondance.Add(word.ToUpper().First(),
+                        new List<CorcondanceItem>()
+                        {
+                        new CorcondanceItem(word, numberLine)
+                        });
+                }
+                else
+                {
+                    if (corcondance[word.ToUpper().First()].Any(c => c.Word.Equals(word, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        corcondance[word.ToUpper().First()]
+                            .FirstOrDefault(
+                            c => c.Word.Equals(word, StringComparison.OrdinalIgnoreCase)).Add(numberLine);
+                    }
+                    else
+                    {
+                        corcondance[word.ToUpper().First()].
+                            Add(new CorcondanceItem(word, numberLine));
+                    }
+                }
+            }
+            catch
+            {
+
+            }
         }
 
-        public void Add(CorcondanceItem corcondanceItem)
-        {
-            if (corcondance.FirstOrDefault(c => c.Word == corcondanceItem.Word) == null)
-                corcondance.Add(corcondanceItem);
-            else
-                corcondance.FirstOrDefault(c => c.Word == corcondanceItem.Word).Add(corcondanceItem.GetNumberLines().First());
-        }
         public T GetCorcondanceItemByWord<T>(string word) where T : CorcondanceItem
         {
-            if (corcondance.FirstOrDefault(w => w.Word == word) != null)
-                return (T)corcondance.FirstOrDefault(w => w.Word == word);
+            if (!corcondance.Values.Any(c => c.Any(w => w.Word.Equals(word, StringComparison.OrdinalIgnoreCase)))) ////////////////////////Почитать про Ignore case////
+                return (T)corcondance
+                    .Values
+                    .Select(
+                    c => c.Where(
+                        w => w.Word.Equals(word, StringComparison.OrdinalIgnoreCase)));
             return default(T);
         }
-        public IEnumerator GetEnumerator() => corcondance.GetEnumerator();
 
-        public override string ToString()
+        public Dictionary<char, List<CorcondanceItem>> GetCorcondance() => corcondance;
+
+        public void Sort()
         {
-            string returnTex = Name + "\n";
-            foreach (CorcondanceItem corcondanceItem in this)
-                returnTex += $"{corcondanceItem.Word} ----------> {corcondanceItem.Counter}  :  {corcondanceItem.NumberLinesToString()}\n";
-            return returnTex;
+            Dictionary<char, List<CorcondanceItem>> corcondanceSorted = new Dictionary<char, List<CorcondanceItem>>();
+            foreach (char keyItem in corcondance.Keys.OrderBy(ch => ch))
+            {
+                corcondanceSorted.Add(keyItem, corcondance[keyItem].OrderBy(ci => ci.Word).ToList());
+            }
+            corcondance = corcondanceSorted;
         }
     }
 }
