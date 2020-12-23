@@ -21,10 +21,10 @@ namespace Task_2__EPAM.Analyzer
             {
                 foreach (var corcondanceItem in corcondance.GetCorcondance())
                 {
-                    fs.WriteLine(corcondanceItem.Key);
+                    fs.WriteLine("{0,18}", corcondanceItem.Key);
                     foreach (var valueItem in corcondanceItem.Value)
                     {
-                        fs.WriteLine($" {valueItem.Word} {valueItem.Counter}: {String.Join(" ", valueItem.GetNumberLines())}");
+                        fs.WriteLine(" {0,15} " + valueItem.Counter + ": " + String.Join(" ", valueItem.GetNumberLines()), valueItem.Word);
                     }
                     fs.WriteLine();
                 }

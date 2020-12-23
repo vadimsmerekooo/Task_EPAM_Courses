@@ -16,6 +16,7 @@ namespace Task_2__EPAM
                 FileWork fileWork = new FileWork();
 
                 corcondance = analyzer.Analyze(fileWork.ReadFile("text.txt"));
+
                 foreach (var corcondanceItem in corcondance.GetCorcondance())
                 {
                     Console.WriteLine("{0,18}", corcondanceItem.Key);
@@ -25,6 +26,7 @@ namespace Task_2__EPAM
                     }
                     Console.WriteLine();
                 }
+
                 fileWork.WriteFile("createcorcondance.txt", corcondance);
             }
             catch (Exception ex)

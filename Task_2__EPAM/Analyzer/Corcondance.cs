@@ -16,34 +16,27 @@ namespace Task_2__EPAM.Analyzer
         {
             if (String.IsNullOrEmpty(word))
                 throw new ArgumentNullException("Corcandance item is null");
-            try
+            if (!corcondance.Keys.Any(ch => ch == word.ToUpper().First()))
             {
-                if (!corcondance.Keys.Any(ch => ch == word.ToUpper().First()))
-                {
-                    corcondance.Add(word.ToUpper().First(),
-                        new List<CorcondanceItem>()
-                        {
+                corcondance.Add(word.ToUpper().First(),
+                    new List<CorcondanceItem>()
+                    {
                         new CorcondanceItem(word, numberLine)
-                        });
+                    });
+            }
+            else
+            {
+                if (corcondance[word.ToUpper().First()].Any(c => c.Word.Equals(word, StringComparison.OrdinalIgnoreCase)))
+                {
+                    corcondance[word.ToUpper().First()]
+                        .FirstOrDefault(
+                        c => c.Word.Equals(word, StringComparison.OrdinalIgnoreCase)).Add(numberLine);
                 }
                 else
                 {
-                    if (corcondance[word.ToUpper().First()].Any(c => c.Word.Equals(word, StringComparison.OrdinalIgnoreCase)))
-                    {
-                        corcondance[word.ToUpper().First()]
-                            .FirstOrDefault(
-                            c => c.Word.Equals(word, StringComparison.OrdinalIgnoreCase)).Add(numberLine);
-                    }
-                    else
-                    {
-                        corcondance[word.ToUpper().First()].
-                            Add(new CorcondanceItem(word, numberLine));
-                    }
+                    corcondance[word.ToUpper().First()].
+                        Add(new CorcondanceItem(word, numberLine));
                 }
-            }
-            catch
-            {
-
             }
         }
 
