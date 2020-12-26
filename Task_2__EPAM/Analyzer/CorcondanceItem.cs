@@ -9,7 +9,7 @@ namespace Task_2__EPAM.Analyzer
 {
     class CorcondanceItem : ICorcondanceItem
     {
-        public string Word { get; set; }
+        public string Word { get; private set; }
         public int Counter { get; private set; }
         List<int> numberLines = new List<int>();
 
