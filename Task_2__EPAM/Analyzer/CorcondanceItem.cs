@@ -25,10 +25,8 @@ namespace Task_2__EPAM.Analyzer
         {
             if (!numberLines.Contains(numberLine))
                 numberLines.Add(numberLine);
-            IncrementCounter();
+            Counter++;
         }
         public List<int> GetNumberLines() => numberLines.ToList();
-
-        private void IncrementCounter() => Counter++;
     }
 }

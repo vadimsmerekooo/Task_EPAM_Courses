@@ -16,10 +16,15 @@ namespace Task_2__EPAM.Analyzer
 
         public void WriteFile(string path, Corcondance corcondance)
         {
+            if (!File.Exists(path))
+                throw new FileNotFoundException("File not found");
+            if (corcondance is null)
+                throw new Exception("Corcondance is null");
+
             File.WriteAllText(path, "");
-            using (StreamWriter fs = new StreamWriter("createcorcondance.txt", true, Encoding.Default))
+            using (StreamWriter fs = new StreamWriter(path, true, Encoding.Default))
             {
-                foreach (var corcondanceItem in corcondance.GetCorcondance())
+                foreach (KeyValuePair<char, List<CorcondanceItem>> corcondanceItem in corcondance)
                 {
                     fs.WriteLine("{0,18}", corcondanceItem.Key);
                     foreach (var valueItem in corcondanceItem.Value)

@@ -9,13 +9,13 @@ using Task_2__EPAM.Analyzer.Interfaces;
 
 namespace Task_2__EPAM.Analyzer
 {
-    class Analyzer 
+    class Analyzer : IAnalyzer
     {
-        Corcondance corcondances = new Corcondance();
         string regex = "[^0-9a-zA-Zа-яА-Я]+";
-
+        
         public Corcondance Analyze(string[] readLines)
         {
+            Corcondance corcondances = new Corcondance();
             if (readLines is null)
                 throw new ArgumentNullException("Read lines is null");
             string[] words;
@@ -30,7 +30,6 @@ namespace Task_2__EPAM.Analyzer
                             corcondances.Add(wordItem, i + 1);
                     }
                 }
-                corcondances.Sort();
                 return corcondances;
             }
             catch (Exception ex)

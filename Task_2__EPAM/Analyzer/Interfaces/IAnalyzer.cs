@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Task_2__EPAM.Analyzer.Interfaces
 {
-    interface ICorcondance
+    interface IAnalyzer
     {
-        void Add(string word, int numberLine);
+        Corcondance Analyze(string[] readLines);
     }
 }
