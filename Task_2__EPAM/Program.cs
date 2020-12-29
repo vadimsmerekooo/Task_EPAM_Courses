@@ -1,34 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using Task_2__EPAM.Analyzer;
+using Task_2__EPAM.Analyzer.Interfaces;
 
 namespace Task_2__EPAM
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             try
             {
                 Analyzer.Analyzer analyzer = new Analyzer.Analyzer();
-                Corcondance corcondance = new Corcondance();
+                IConcordance concordance;
                 FileWork fileWork = new FileWork();
 
-                corcondance = analyzer.Analyze(fileWork.ReadFile(ConfigurationManager.ConnectionStrings["InputFile"].ConnectionString));
 
-                foreach (KeyValuePair<char, List<CorcondanceItem>> corcondanceItem in corcondance)
+                concordance = analyzer.Analyze(fileWork.ReadFile(ConfigurationManager.ConnectionStrings["InputFile"].ConnectionString));
+
+                foreach (KeyValuePair<char, List<ConcordanceItem>> concordanceItem in concordance.GetEnumerator())
                 {
-                    Console.WriteLine("{0,18}", char.ToUpper(corcondanceItem.Key));
-                    foreach (var valueItem in corcondanceItem.Value)
+                    Console.WriteLine("{0,18}", char.ToUpper(concordanceItem.Key));
+                    foreach (var valueItem in concordanceItem.Value)
                     {
                         Console.WriteLine(" {0,15} " + valueItem.Counter + ": " + String.Join(" ", valueItem.GetNumberLines()), valueItem.Word);
                     }
                     Console.WriteLine();
                 }
 
-                fileWork.WriteFile(ConfigurationManager.ConnectionStrings["OutputFile"].ConnectionString, corcondance);
+                fileWork.WriteFile(ConfigurationManager.ConnectionStrings["OutputFile"].ConnectionString, concordance);
             }
             catch (Exception ex)
             {

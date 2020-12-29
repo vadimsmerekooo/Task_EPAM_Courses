@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Task_2__EPAM.Analyzer.Interfaces;
 
 namespace Task_2__EPAM.Analyzer
 {
@@ -14,7 +15,7 @@ namespace Task_2__EPAM.Analyzer
             return File.ReadAllLines(path);
         }
 
-        public void WriteFile(string path, Corcondance corcondance)
+        public void WriteFile(string path, IConcordance corcondance)
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException("File not found");
@@ -24,7 +25,7 @@ namespace Task_2__EPAM.Analyzer
             File.WriteAllText(path, "");
             using (StreamWriter fs = new StreamWriter(path, true, Encoding.Default))
             {
-                foreach (KeyValuePair<char, List<CorcondanceItem>> corcondanceItem in corcondance)
+                foreach (KeyValuePair<char, List<ConcordanceItem>> corcondanceItem in corcondance.GetEnumerator())
                 {
                     fs.WriteLine("{0,18}", corcondanceItem.Key);
                     foreach (var valueItem in corcondanceItem.Value)

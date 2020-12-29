@@ -6,6 +6,6 @@ namespace Task_2__EPAM.Analyzer.Interfaces
 {
     interface IAnalyzer
     {
-        Corcondance Analyze(string[] readLines);
+        IConcordance Analyze(string[] readLines);
     }
 }

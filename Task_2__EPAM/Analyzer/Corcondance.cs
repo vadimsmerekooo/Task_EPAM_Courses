@@ -8,43 +8,44 @@ using Task_2__EPAM.Analyzer.Interfaces;
 
 namespace Task_2__EPAM.Analyzer
 {
-    class Corcondance : ICorcondance, IEnumerable
+    class Concordance : IConcordance
     {
-        Dictionary<char, List<CorcondanceItem>> corcondance = new Dictionary<char, List<CorcondanceItem>>();
+        Dictionary<char, List<ConcordanceItem>> concordanceDictionary = new Dictionary<char, List<ConcordanceItem>>();
 
         public void Add(string word, int numberLine)
         {
             if (String.IsNullOrEmpty(word))
                 throw new ArgumentNullException("Conrcondance item is null");
-            if (!corcondance.Keys.Any(ch => ch == word.First()))
+
+            if (concordanceDictionary.Keys.All(ch => ch != word.First()))
             {
-                corcondance.Add(word.First(),
-                                new List<CorcondanceItem>()
+                concordanceDictionary.Add(word.First(),
+                                new List<ConcordanceItem>()
                                 {
-                                    new CorcondanceItem(word, numberLine)
+                                    new ConcordanceItem(word, numberLine)
                                 });
             }
             else
             {
-                if (corcondance[word.First()].Any(c => c.Word.Equals(word, StringComparison.OrdinalIgnoreCase)))
+                if (concordanceDictionary[word.First()].Any(c => c.Word.Equals(word, StringComparison.OrdinalIgnoreCase)))
                 {
-                    corcondance[word.First()]
+                    concordanceDictionary[word.First()]
                         .FirstOrDefault(c => c.Word.Equals(word, StringComparison.OrdinalIgnoreCase))
                         .Add(numberLine);
                 }
                 else
                 {
-                    corcondance[word.First()]
-                        .Add(new CorcondanceItem(word, numberLine));
+                    concordanceDictionary[word.First()]
+                        .Add(new ConcordanceItem(word, numberLine));
                 }
             }
         }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerable GetEnumerator()
         {
-            foreach (var corcondanceItem in corcondance.OrderBy(c => c.Key))
+            foreach (var concordanceItem in concordanceDictionary.OrderBy(c => c.Key))
             {
-                yield return corcondanceItem;
+                yield return concordanceItem;
             }
         }
     }
